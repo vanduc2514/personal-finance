@@ -1,3 +1,4 @@
+import numbers
 import string
 from datetime import datetime
 
@@ -9,13 +10,21 @@ class Transaction:
 
     def __init__(self,
                  note: string,
-                 date: string,
-                 amount: string,
+                 date: datetime,
+                 amount: numbers,
                  expense=True):
-        self.note = note
+        self._note = note
         self._date = date
-        self.amount = amount
-        self.expense = expense
+        self._amount: numbers = amount
+        self._expense = expense
+
+    @property
+    def note(self):
+        return self._note
+
+    @note.getter
+    def note(self):
+        return self._note
 
     @property
     def date(self):
@@ -23,7 +32,23 @@ class Transaction:
 
     @date.getter
     def date(self) -> datetime:
-        return datetime.strptime(self._date, "%d/%m/%Y %H:%M:%S")
+        return self._date
+
+    @property
+    def amount(self):
+        return self._amount
+
+    @amount.getter
+    def amount(self):
+        return self._amount
+
+    @property
+    def expense(self):
+        return self._expense
+
+    @expense.getter
+    def expense(self):
+        return self._expense
 
     def __str__(self) -> str:
         return str({

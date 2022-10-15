@@ -1,5 +1,6 @@
 import csv
 import string
+from datetime import datetime
 
 import util
 
@@ -14,6 +15,9 @@ def vt_report_csv(path: string, end=36, start=7) -> list[util.Transaction]:
         current = report.line_num
         # start point
         if start < current < end:
-            transaction = util.Transaction(row[2], row[1], row[3])
+            # parsed date
+            date = datetime.strptime(row[1], "%d/%m/%Y %H:%M:%S")
+            amount = int(row[3].replace(',', '')) * -1
+            transaction = util.Transaction(row[2], date, amount)
             transactions.append(transaction)
     return transactions

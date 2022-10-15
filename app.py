@@ -1,6 +1,3 @@
-import csv
-import string
-
 import ingest
 
 identifier = {
@@ -22,7 +19,6 @@ output = {
 transactions = ingest.vt_report_csv('202209050259.csv')
 
 for transaction in transactions:
-    print(transaction.date)
     transaction_note = transaction.note
     for keyword, category in identifier.items():
         for item in category:
