@@ -10,15 +10,11 @@ identifier = {
     'gift': ['gift']
 }
 
-output = {
-    'meal': [],
-    'bike': [],
-    'cafe': [],
-    'groceries': [],
-    'cash_out': [],
-    'house': [],
-    'gift': []
-}
+# todo: make json and read identifier from it
+
+# todo: init output map from input
+
+output = dict((k, []) for (k, v) in identifier.items())
 
 undetected = []
 
