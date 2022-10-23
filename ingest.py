@@ -5,7 +5,7 @@ from datetime import datetime
 import util
 
 
-def vt_report_csv(path: string, end=36, start=7) -> list[util.Transaction]:
+def vt_report_csv(path: string, end=46, start=7) -> list[util.Transaction]:
     if path is None:
         pass
     transactions = []

@@ -1,3 +1,5 @@
+import copy
+
 import ingest
 
 identifier = {
@@ -19,14 +21,15 @@ output = dict((k, []) for (k, v) in identifier.items())
 undetected = []
 
 trans = ingest.vt_report_csv('202210232341.csv')
+trans_temp = copy.deepcopy(trans)
 
 for transaction in trans:
-    transaction_note = transaction.note.lower()
+    transaction_note: str = transaction.note.lower()
     for keyword, category in identifier.items():
         for item in category:
             if item.lower() in transaction_note:
                 output.get(keyword).append(transaction)
-                trans.remove(transaction)
+                trans_temp.remove(transaction)
 
 for k, v in output.items():
     print(k)
